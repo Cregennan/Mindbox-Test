@@ -27,7 +27,7 @@ namespace ShapeAreaLib
         public double Area { 
             get { 
                 
-                if (_area.Value <= 0)
+                if (_area.Value <= 0 || double.IsInfinity(_area.Value))
                 {
                     throw new OverflowException("Area of the shape is too large");
                 }

@@ -40,19 +40,19 @@ namespace ShapeAreaLib.Shapes
         /// <param name="one">First side</param>
         /// <param name="two">Second side</param>
         /// <param name="three">Third side</param>
-        /// <exception cref="ArgumentOutOfRangeException">Is thrown when any of sides is non-positive</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Is thrown when any of sides is not positive</exception>
         /// <exception cref="ArgumentException">Is thrown if triangle sides rule is violated</exception>
         public Triangle(double one, double two, double three)
         {
 
             if (one <= 0 || two <= 0 || three <= 0)
             {
-                throw new ArgumentOutOfRangeException("Any side of a triangle must be greater than zero");
+                throw new ArgumentOutOfRangeException(null, "Any side of a triangle must be positive");
             }
             
             if (one + two <= three || one + three <= two || two + three <= one)
             {
-                throw new ArgumentException($"The sum of lengths of any two sides should be greater than the length of third side");
+                throw new ArgumentException(null, "The sum of lengths of any two sides should be greater than the length of third side");
             }
             First = one;
             Second = two;

@@ -1,12 +1,13 @@
 using ShapeAreaLib.Shapes;
 
+
 namespace ShapeAreaLib.Tests
 {
     [TestClass]
     public class TriangleTests
     {
 
-        [TestMethod]
+        [TestMethod("Определение прямоугольности")]
         public void RightTriangleTest()
         {
 
@@ -20,7 +21,7 @@ namespace ShapeAreaLib.Tests
 
         }
 
-        [TestMethod]
+        [TestMethod("Вычисление площади прямоугольного треугольника")]
         public void RightTriangleArea() {
 
             var triangles = new Triangle[]
@@ -35,14 +36,20 @@ namespace ShapeAreaLib.Tests
 
             var expectedAreas = new double[] {
             
-                6, 110, 60, 84
+                6, 210, 60, 84
             };
 
-            CollectionAssert.AreEqual(expectedAreas, areas);
+            for(int i = 0; i < areas.Length; i++)
+            {
+
+                Assert.AreEqual(expectedAreas[i], areas[i]);
+
+            }
+            //CollectionAssert.AreEqual(expectedAreas, areas);
 
         }
 
-        [TestMethod]
+        [TestMethod("Вычисление площади треугольника")]
         public void AnyTriangleArea()
         {
 
@@ -57,13 +64,47 @@ namespace ShapeAreaLib.Tests
 
             var expectedAreas = new double[]
             {
-
+                0.75 * Math.Sqrt(39),
+                0.25d * 15d * Math.Sqrt(247),
+                0.25 * Math.Sqrt(20735)
             };
+
+            for(int i = 0; i < expectedAreas.Length; i++)
+            {
+
+                Assert.AreEqual(expectedAreas[i], areas[i], Definitions.Delta);
+
+            }
 
         }
 
-        [TestMethod]
-        public void Right() { }
+        [TestMethod("Обработка слишком больших треугольников")]
+        [ExpectedException(typeof(OverflowException), "Неверная обработка слишком больших граней")]
+        public void TooLargeTriangle()
+        {
+
+            _ = new Triangle(double.MaxValue, double.MaxValue - 1, double.MaxValue - 1)
+                    .Area;
+
+        }
+
+        [TestMethod("Обработка граней не положительного размера")]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), "Неверная обработка слишком маленьких граней")]
+        public void NonPositiveSides()
+        {
+
+            _ = new Triangle(0, 0, 0);
+
+        }
+
+        [TestMethod("Обработка нарушения правила треугольника")]
+        [ExpectedException(typeof(ArgumentException), "Неверная обработка нарушения правила треугольника")]
+        public void TriangleRuleViolation()
+        {
+
+            _ = new Triangle(7, 3, 3);
+
+        }
         
         
     }
