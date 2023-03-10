@@ -7,7 +7,7 @@ namespace ShapeAreaLib.Tests
     public class CircleTests
     {
 
-        [TestMethod("Вычисление площади круга")]
+        [TestMethod("Test for circle area calculation")]
         public void CircleArea()
         {
 
@@ -30,7 +30,7 @@ namespace ShapeAreaLib.Tests
         }
 
 
-        [TestMethod("Обработка не положительного радиуса")]
+        [TestMethod("Test for non-positive radius")]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void NegativeRadius()
         {
@@ -38,16 +38,12 @@ namespace ShapeAreaLib.Tests
         }
 
 
-        [TestMethod("Обработка слишком большого радиуса")]
+        [TestMethod("Test for too large radius")]
         [ExpectedException(typeof(OverflowException))]
         public void TooLargeCircle()
         {
             _ = new Circle(double.MaxValue).Area;
         }
-
-
-
-
 
     }
 }
