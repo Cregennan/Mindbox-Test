@@ -13,17 +13,17 @@ namespace ShapeAreaLib.Shapes
         /// <summary>
         /// First side of triangle
         /// </summary>
-        public double First { get; init; }
+        public double First { get; private set; }
 
         /// <summary>
         /// Second side of triangle
         /// </summary>
-        public double Second { get; init; }
+        public double Second { get; private set; }
 
         /// <summary>
         /// Third side of triangle
         /// </summary>
-        public double Third { get; init; }
+        public double Third { get; private set; }
 
         /// <summary>
         /// True if triangle is right angled

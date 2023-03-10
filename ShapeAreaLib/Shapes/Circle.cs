@@ -13,7 +13,7 @@ namespace ShapeAreaLib.Shapes
         /// <summary>
         /// Radius of a circle
         /// </summary>
-        public double Radius { get; init; }
+        public double Radius { get; private set; }
 
         #endregion
 
