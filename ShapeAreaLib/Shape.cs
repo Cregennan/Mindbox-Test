@@ -20,6 +20,13 @@ namespace ShapeAreaLib
         /// </summary>
         protected readonly Lazy<double> _area;
 
+
+        /// <summary>
+        /// Default double precision tolerance
+        /// </summary>
+        protected const double _defaultDelta = 1e-5;
+
+
         /// <summary>
         /// Area of the shape
         /// </summary>

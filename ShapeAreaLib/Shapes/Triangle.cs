@@ -49,11 +49,14 @@ namespace ShapeAreaLib.Shapes
             {
                 throw new ArgumentOutOfRangeException(null, "Any side of a triangle must be positive");
             }
-            
-            if (one + two <= three || one + three <= two || two + three <= one)
+
+
+            var errors = new double[] { one + two - three, one + three - two, two + three - one };
+            if (errors.Where(x => Math.Abs(x) > _defaultDelta).Any())
             {
                 throw new ArgumentException(null, "The sum of lengths of any two sides should be greater than the length of third side");
             }
+
             First = one;
             Second = two;
             Third = three;
@@ -68,7 +71,11 @@ namespace ShapeAreaLib.Shapes
         protected bool IsRightTriangle()
         {
             var maxSide = double.Max(double.Max(this.First, this.Second), this.Third);
-            return 2 * maxSide * maxSide == First * First + Second * Second + Third * Third;
+
+            var error = 2 * maxSide * maxSide - First * First + Second * Second + Third * Third;
+
+            return Math.Abs(error) < _defaultDelta;
+
         }
 
 
